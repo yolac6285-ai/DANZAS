@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diablada - Folclore de Bolivia</title>
+    
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Librerías Three.js (Versión unificada r128) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            user-select: none;
+        } 
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, #2a0808 0%, #050202 100%);
+            color: #ebdcb9;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* === PANTALLA DE CARGA === */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #050202;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .spinner-ring {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            position: relative;
+            background: conic-gradient(#e74c3c 0deg 120deg, #f1c40f 120deg 240deg, #ffffff 240deg 360deg);
+            animation: spin 1.2s linear infinite;
+            box-shadow: 0 0 30px rgba(231, 76, 60, 0.5);
+            margin-bottom: 25px;
+        }
+
+        .spinner-ring::before {
+            content: '';
+            position: absolute;
+            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            background: #050202;
+            border-radius: 50%;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #e74c3c;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .progress-bar-container {
+            width: 260px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c, #f1c40f, #ffffff);
+            transition: width 0.2s ease;
+        }
+
+        #progress-text {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            letter-spacing: 1px;
+        }
+
+        /* === CONTENEDOR 3D === */
+        #webgl-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        /* === INTERFAZ DE USUARIO === */
+        .ui-container {
+            position: relative;
+            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            padding: 25px 35px;
+        }
+
+        .interactive { pointer-events: auto; }
+
+        /* === HEADER === */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(20, 5, 5, 0.75);
+            border: 1px solid rgba(231, 76, 60, 0.4);
+            color: #fcd116;
+            padding: 12px 26px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn-back:hover {
+            background: #e74c3c;
+            color: #fff;
+            box-shadow: 0 0 25px rgba(231, 76, 60, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .dance-badge {
+            background: rgba(20, 5, 5, 0.75);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #fcd116;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        /* === MAIN CONTENT LAYOUT === */
+        .main-content {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            margin-top: 10px;
+        }
+
+        /* === PANEL INFORMATIVO === */
+        .detail-card {
+            width: 390px;
+            max-width: 100%;
+            background: rgba(20, 5, 5, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(231, 76, 60, 0.08);
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .detail-card::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .detail-card::-webkit-scrollbar-thumb {
+            background: rgba(231, 76, 60, 0.5);
+            border-radius: 10px;
+        }
+
+        .header-title-group {
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(231, 76, 60, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .detail-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 30%, #e74c3c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+        }
+
+        .detail-subtitle {
+            font-size: 0.82rem;
+            color: #fcd116;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-top: 6px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-subtitle::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #fcd116;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #fcd116;
+        }
+
+        .section-block {
+            margin-bottom: 16px;
+            background: rgba(231, 76, 60, 0.03);
+            padding: 14px;
+            border-radius: 12px;
+            border-left: 3px solid #e74c3c;
+            transition: transform 0.2s ease;
+        }
+
+        .section-block:hover {
+            background: rgba(231, 76, 60, 0.06);
+            transform: translateX(4px);
+        }
+
+        .section-block h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.92rem;
+            color: #e74c3c;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-block p {
+            font-size: 0.83rem;
+            line-height: 1.6;
+            color: #e5d8c5;
+        }
+
+        .info-grid {
+            dt, dl { margin: 0; }
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .grid-item {
+            background: rgba(231, 76, 60, 0.08);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(231, 76, 60, 0.25);
+            text-align: center;
+        }
+
+        .grid-item span {
+            display: block;
+            font-size: 0.65rem;
+            color: #c0b0a0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .grid-item strong {
+            font-size: 0.88rem;
+            color: #fcd116;
+        }
+
+        /* === FOOTER === */
+        footer {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .controls-hint {
+            background: rgba(20, 5, 5, 0.75);
+            border: 1px solid rgba(231, 76, 60, 0.25);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.78rem;
+            color: #dcd0c0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 900px) {
+            .ui-container { padding: 15px; }
+            .main-content { justify-content: center; align-items: flex-end; }
+            .detail-card { width: 100%; max-height: 40vh; }
+            .controls-html { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Pantalla de Carga -->
+    <div id="loading-screen">
+        <div class="spinner-ring"></div>
+        <div class="loading-title">CARGANDO DIABLADA 3D</div>
+        <div class="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="progress-text">0%</div>
+    </div>
+
+    <!-- Contenedor 3D -->
+    <div id="webgl-container"></div>
+
+    <!-- Interfaz de Usuario -->
+    <div id="ui-container" class="ui-container">
+        <header class="interactive">
+            <a href="index.html" class="btn-back">
+                <span>←</span> VOLVER AL MENÚ
+            </a>
+            <div class="dance-badge">OBRA MAESTRA • ORURO</div>
+        </header>
+
+        <div class="main-content">
+            <!-- Tarjeta Informativa -->
+            <aside class="detail-card interactive">
+                <div class="header-title-group">
+                    <h1 class="detail-title">LA DIABLADA</h1>
+                    <div class="detail-subtitle">Oruro • Bolivia</div>
+                </div>
+
+                <div class="section-block">
+                    <h3>🔥 SÍMBOLO Y MITOLOGÍA</h3>
+                    <p>
+                        Danza emblemática del Carnaval de Oruro, Obra Maestra del Patrimonio Oral e Intangible de la Humanidad (UNESCO). Representa la lucha épica entre el bien y el mal, personificada en la batalla de los arcángeles contra las fuerzas infernales lideradas por Lucifer y el Supay.
+                    </p>
+                </div>
+
+                <div class="section-block">
+                    <h3>👹 MÁSCARA Y TRAJE</h3>
+                    <p>
+                        <strong>El Diablo:</strong> Cuenta con una imponente careta ornamentada con dragones, serpientes, ojos desorbitados, cuernos metálicos y una larga cabellera de crines. El traje incluye pecheras bordadas con hilos de oro y plata, capas pesadas y botas altas.<br>
+                        <strong>La China Supay:</strong> Compañera del diablo, caracterizada por su corsé brillante, pollera corta adornada con lentejuelas y una máscara coqueta de rasgos diabólicos.
+                    </p>
+                </div>
+
+                <div class="section-block">
+                    <h3>🎺 BANDA Y COREOGRAFÍA</h3>
+                    <p>
+                        Ejecutada al compás imponente de bandas de bronces con marchas de fuerte percusión, platillos y trompetas que marcan el paso firme y los giros teatrales de los bailarines.
+                    </p>
+                </div>
+
+                <div class="info-grid">
+                    <div class="grid-item">
+                        <span>Reconocimiento</span>
+                        <strong>UNESCO (2001)</strong>
+                    </div>
+                    <div class="grid-item">
+                        <span>Personaje Central</span>
+                        <strong>Arcángel y Lucifer</strong>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <div class="controls-hint interactive">
+                🖱️ Mantén presionado el clic para girar y explorar el modelo 3D
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Carga y Progresión
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const loadingScreen = document.getElementById('loading-screen');
+
+        const loadingManager = new THREE.LoadingManager();
+
+        loadingManager.onProgress = function (item, loaded, total) {
+            const percent = Math.floor((loaded / total) * 100);
+            if (progressBar) progressBar.style.width = percent + '%';
+            if (progressText) progressText.innerText = percent + '%';
+        };
+
+        loadingManager.onLoad = function () {
+            if (loadingScreen) {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => { loadingScreen.style.display = 'none'; }, 800);
+            }
+        };
+
+        // Escena y Renderizador
+        const container = document.getElementById('webgl-container');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050202, 0.015);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        container.appendChild(renderer.domElement);
+
+        // Cámara
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        
+        function updateCameraPosition() {
+            if (window.innerWidth > 900) {
+                camera.position.set(0, 0, 5.5);
+            } else {
+                camera.position.set(0, 0, 6.5);
+            }
+        }
+        updateCameraPosition();
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.maxPolarAngle = Math.PI / 2 + 0.1;
+        controls.minDistance = 2.5;
+        controls.maxDistance = 10;
+        controls.target.set(1.5, -0.1, 0);
+
+        // Iluminación (Tonos dramáticos rojos y dorados)
+        const ambientLight = new THREE.AmbientLight(0xffe6e6, 0.85);
+        scene.add(ambientLight);
+
+        const mainLight = new THREE.DirectionalLight(0xfffaee, 1.5);
+        mainLight.position.set(4, 8, 6);
+        mainLight.castShadow = true;
+        scene.add(mainLight);
+
+        const rimLight = new THREE.DirectionalLight(0xe74c3c, 1.4);
+        rimLight.position.set(-6, 4, -4);
+        scene.add(rimLight);
+
+        const fillLight = new THREE.DirectionalLight(0xf1c40f, 0.6);
+        fillLight.position.set(0, -3, 4);
+        scene.add(fillLight);
+
+        // Partículas (Efecto de chispas o fuego infernal/dorado)
+        function createParticleSystem(colorHex, count, size) {
+            const particleGeo = new THREE.BufferGeometry();
+            const positions = [];
+
+            for (let i = 0; i < count; i++) {
+                positions.push(
+                    (Math.random() - 0.5) * 20,
+                    (Math.random() - 0.5) * 20,
+                    (Math.random() - 0.5) * 20
+                );
+            }
+
+            particleGeo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            const particleMat = new THREE.PointsMaterial({
+                size: size,
+                color: colorHex,
+                transparent: true,
+                opacity: 0.5,
+                blending: THREE.AdditiveBlending
+            });
+            return new THREE.Points(particleGeo, particleMat);
+        }
+
+        const redParticles = createParticleSystem(0xe74c3c, 800, 0.05);
+        const goldParticles = createParticleSystem(0xf1c40f, 400, 0.04);
+        scene.add(redParticles);
+        scene.add(goldParticles);
+
+        // Carga de Modelos 3D de Diablada
+        const loader = new THREE.GLTFLoader(loadingManager);
+        let diabloModel, diablaModel;
+
+        const characterGroup = new THREE.Group();
+        scene.add(characterGroup);
+
+        // Modelo 1: Diablo / Personaje Principal (`diablo.glb`)
+        loader.load('diablo.glb', function(gltf) {
+            diabloModel = gltf.scene;
+            diabloModel.scale.set(3.0, 3.0, 3.0);
+            diabloModel.position.set(1.2, -1.8, 0);
+            
+            diabloModel.traverse((node) => {
+                if (node.isMesh) {
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                }
+            });
+            characterGroup.add(diabloModel);
+        });
+
+        // Modelo 2: Diabla / China Supay (`diabla.glb`)
+        loader.load('diabla.glb', function(gltf) {
+            diablaModel = gltf.scene;
+            diablaModel.scale.set(3.0, 3.0, 3.0);
+            diablaModel.position.set(3.4, -1.8, 0);
+            
+            diablaModel.traverse((node) => {
+                if (node.isMesh) {
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                }
+            });
+            characterGroup.add(diablaModel);
+        });
+
+        // Bucle de Animación
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            redParticles.rotation.y = time * 0.015;
+            goldParticles.rotation.y = -time * 0.02;
+
+            if (diabloModel) {
+                diabloModel.rotation.y = Math.sin(time * 0.8) * 0.18;
+                diabloModel.position.y = -1.8 + Math.abs(Math.sin(time * 3.5)) * 0.05;
+            }
+            if (diablaModel) {
+                diablaModel.rotation.y = -Math.sin(time * 0.8) * 0.18;
+                diablaModel.position.y = -1.8 + Math.abs(Math.sin(time * 3.5 + 0.8)) * 0.05;
+            }
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Responsive
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            updateCameraPosition();
+        });
+    </script>
+</body>
+</html>
