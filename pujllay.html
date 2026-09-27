@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pujllay - Folclore de Bolivia</title>
-    
+
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Librerías Three.js (Versión unificada r128) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             user-select: none;
-        } 
-        
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background: radial-gradient(circle at center, #351a0c 0%, #080302 100%);
@@ -62,14 +65,22 @@
         .spinner-ring::before {
             content: '';
             position: absolute;
-            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
             background: #070504;
             border-radius: 50%;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .loading-title {
@@ -125,7 +136,9 @@
             padding: 25px 35px;
         }
 
-        .interactive { pointer-events: auto; }
+        .interactive {
+            pointer-events: auto;
+        }
 
         /* === HEADER === */
         header {
@@ -150,7 +163,7 @@
             letter-spacing: 1.5px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .btn-back:hover {
@@ -171,7 +184,7 @@
             text-transform: uppercase;
             font-weight: 700;
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         /* === MAIN CONTENT LAYOUT === */
@@ -223,7 +236,7 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: 2px;
             line-height: 1.1;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
         }
 
         .detail-subtitle {
@@ -323,17 +336,51 @@
             font-size: 0.78rem;
             color: #dcd0c0;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         @media (max-width: 900px) {
-            .ui-container { padding: 15px; }
-            .main-content { justify-content: center; align-items: flex-end; }
-            .detail-card { width: 100%; max-height: 40vh; }
-            .controls-hint { display: none; }
+            .ui-container {
+                padding: 15px;
+            }
+
+            .main-content {
+                justify-content: center;
+                align-items: flex-end;
+            }
+
+            .detail-card {
+                width: 100%;
+                max-height: 40vh;
+            }
+
+            .controls-hint {
+                display: none;
+            }
+        }
+
+        .fuente-info {
+            margin-top: 18px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.75rem;
+            line-height: 1.4;
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .fuente-info a {
+            color: #fcd116;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .fuente-info a:hover {
+            color: #ffffff;
         }
     </style>
 </head>
+
 <body>
 
     <!-- Pantalla de Carga -->
@@ -367,45 +414,64 @@
                 </div>
 
                 <div class="section-block">
-                    <h3> ORIGEN Y PATRIMONIO</h3>
+                    <h3>ORIGEN Y PATRIMONIO</h3>
                     <p>
-                        Danza ritual y ceremonial de Tarabuco (Chuquisaca) declarada Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO. Conmemora la victoria sobre el ejército español en la batalla de Jula Jula y celebra la época de la cosecha y la abundancia (Tata Kukacu).
+                        Danza ritual y ceremonial de Tarabuco, Chuquisaca, vinculada a la cultura Yampara. El Pujllay y
+                        el Ayarichi fueron inscritos en 2014 en la Lista Representativa del Patrimonio Cultural
+                        Inmaterial de la Humanidad de la UNESCO. Estas expresiones se relacionan con los ciclos
+                        agrícolas, la época de lluvias, la fertilidad de la tierra y las celebraciones comunitarias.
                     </p>
                 </div>
 
                 <div class="section-block">
-                    <h3> VESTIMENTA TRADICIONAL</h3>
+                    <h3>VESTIMENTA TRADICIONAL</h3>
                     <p>
-                        <strong>Varón:</strong> Pantalones rajados atrás, un aguayo con motivos simbólicos, montera cónica ornamentada con espejos y metales, y una faja con espuelas o sonajeros metálicos en los tobillos.<br>
-                        <strong>Mujer:</strong> Sombrero típico montera o sombrero tarabuqueño, lliclla colorida, blusa bordada con hilos vivos y polleras superpuestas.
+                        <strong>Varón:</strong> Montera de cuero, poncho pequeño, camisa, cinturón ancho con
+                        campanillas, pantalón decorado, polainas y sandalias con espuelas.
+                        <br><br>
+                        <strong>Mujer:</strong> Montera tradicional, vestido o aymilla, falda tejida con motivos
+                        culturales y lliclla o aguayo sostenido con un prendedor.
                     </p>
                 </div>
 
                 <div class="section-block">
-                    <h3> RITMO Y EXPRESIÓN</h3>
+                    <h3>RITMO Y EXPRESIÓN</h3>
                     <p>
-                        Acompañado por el sonido peculiar de los pinkillos y las largas tarkas, el baile se caracteriza por zapateos firmes, movimientos llenos de energía y saltos rítmicos.
+                        La música utiliza instrumentos aerófonos tradicionales, como pinkillos y flautas largas. La
+                        danza se caracteriza por zapateos firmes, saltos rítmicos y movimientos llenos de energía. El
+                        sonido de las campanillas y las espuelas acompaña el ritmo de los bailarines.
                     </p>
                 </div>
 
                 <div class="info-grid">
                     <div class="grid-item">
                         <span>Reconocimiento</span>
-                        <strong>UNESCO (2014)</strong>
+                        <strong>UNESCO, 2014</strong>
                     </div>
+
                     <div class="grid-item">
                         <span>Instrumentos</span>
-                        <span>Pinkillos y Tarkas</span>
+                        <span>Pinkillos y flautas largas</span>
                     </div>
                 </div>
+
+                <!-- Fuente -->
+                <p class="fuente-info">
+                    Fuente:
+                    <a href="https://ich.unesco.org/es/RL/el-pujllay-y-el-ayarichi-musicas-y-danzas-de-la-cultura-yampara-00630"
+                        target="_blank" rel="noopener noreferrer">
+                        UNESCO: El Pujllay y el Ayarichi, músicas y danzas de la cultura Yampara
+                    </a>
+                </p>
             </aside>
         </div>
+    </div>
 
-        <footer>
-            <div class="controls-hint interactive">
-                🖱️ Mantén presionado el clic para girar y explorar el modelo 3D
-            </div>
-        </footer>
+    <footer>
+        <div class="controls-hint interactive">
+            🖱️ Mantén presionado el clic para girar y explorar el modelo 3D
+        </div>
+    </footer>
     </div>
 
     <script>
@@ -445,7 +511,7 @@
 
         // Cámara
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        
+
         function updateCameraPosition() {
             if (window.innerWidth > 900) {
                 camera.position.set(0, 0, 5.5);
@@ -517,11 +583,11 @@
         scene.add(characterGroup);
 
         // Modelo 1: Pujllay Hombre (`pujllayhombre.glb`)
-        loader.load('pujllayhombre.glb', function(gltf) {
+        loader.load('pujllayhombre.glb', function (gltf) {
             pujllayHombreModel = gltf.scene;
             pujllayHombreModel.scale.set(3.0, 3.0, 3.0);
             pujllayHombreModel.position.set(1.2, -1.8, 0);
-            
+
             pujllayHombreModel.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -532,11 +598,11 @@
         });
 
         // Modelo 2: Pujllay Chica (`pujllaychica.glb`)
-        loader.load('pujllaychica.glb', function(gltf) {
+        loader.load('pujllaychica.glb', function (gltf) {
             pujllayChicaModel = gltf.scene;
             pujllayChicaModel.scale.set(3.0, 3.0, 3.0);
             pujllayChicaModel.position.set(3.4, -1.8, 0);
-            
+
             pujllayChicaModel.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -579,4 +645,5 @@
         });
     </script>
 </body>
+
 </html>

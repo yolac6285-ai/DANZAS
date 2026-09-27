@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chovena - Folclore de Bolivia</title>
-    
+
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Librerías Three.js (Versión unificada r128) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             user-select: none;
-        } 
-        
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background: radial-gradient(circle at center, #071f14 0%, #020805 100%);
@@ -62,14 +65,22 @@
         .spinner-ring::before {
             content: '';
             position: absolute;
-            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
             background: #020805;
             border-radius: 50%;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .loading-title {
@@ -125,7 +136,9 @@
             padding: 25px 35px;
         }
 
-        .interactive { pointer-events: auto; }
+        .interactive {
+            pointer-events: auto;
+        }
 
         /* === HEADER === */
         header {
@@ -150,7 +163,7 @@
             letter-spacing: 1.5px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .btn-back:hover {
@@ -171,7 +184,7 @@
             text-transform: uppercase;
             font-weight: 700;
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         /* === MAIN CONTENT LAYOUT === */
@@ -223,7 +236,7 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: 2px;
             line-height: 1.1;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
         }
 
         .detail-subtitle {
@@ -323,17 +336,51 @@
             font-size: 0.78rem;
             color: #dcd0c0;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         @media (max-width: 900px) {
-            .ui-container { padding: 15px; }
-            .main-content { justify-content: center; align-items: flex-end; }
-            .detail-card { width: 100%; max-height: 40vh; }
-            .controls-hint { display: none; }
+            .ui-container {
+                padding: 15px;
+            }
+
+            .main-content {
+                justify-content: center;
+                align-items: flex-end;
+            }
+
+            .detail-card {
+                width: 100%;
+                max-height: 40vh;
+            }
+
+            .controls-hint {
+                display: none;
+            }
+        }
+
+        .fuente-info {
+            margin-top: 18px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.75rem;
+            line-height: 1.4;
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .fuente-info a {
+            color: #fcd116;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .fuente-info a:hover {
+            color: #ffffff;
         }
     </style>
 </head>
+
 <body>
 
     <!-- Pantalla de Carga -->
@@ -367,45 +414,63 @@
                 </div>
 
                 <div class="section-block">
-                    <h3>🌴 RITMO Y ALEGRÍA ORIENTAL</h3>
+                    <h3> RITMO Y ALEGRÍA ORIENTAL</h3>
                     <p>
-                        Danza tradicional de las tierras bajas de Bolivia, típica de la región chiquitana y guaraní. Se caracteriza por su ritmo alegre, saltarín y contagioso, interpretada tradicionalmente en festividades patronales, carnavales y celebraciones comunitarias del oriente boliviano.
+                        La Chovena es una danza tradicional de las tierras bajas de Bolivia, especialmente de la región
+                        chiquitana de Santa Cruz. Se caracteriza por su ritmo alegre, saltarín y contagioso. Se
+                        interpreta principalmente en carnavales, fiestas patronales y celebraciones comunitarias del
+                        oriente boliviano.
                     </p>
                 </div>
 
                 <div class="section-block">
-                    <h3>🪶 VESTIMENTA TÍPICA</h3>
+                    <h3> VESTIMENTA TÍPICA</h3>
                     <p>
-                        <strong>Varón:</strong> Pantalón blanco, camisa sencilla, tocados o coronas de plumas de colores vibrantes y a veces detalles de tucu-tucu o elementos de la naturaleza selvática.<br>
-                        <strong>Mujer:</strong> Tipoy (vestido largo tradicional de colores alegres o blancos), adornos florales o tocados en la cabeza, destacando la gracia y naturalidad en el baile descalzo o con sandalias sencillas.
+                        <strong>Varón:</strong> Pantalón y camisa de color claro, además de sombrero o tocado con plumas
+                        y otros elementos relacionados con la naturaleza.
+                        <br><br>
+                        <strong>Mujer:</strong> Tipoy o vestido tradicional, generalmente acompañado de flores, adornos
+                        coloridos y accesorios propios de la región chiquitana.
                     </p>
                 </div>
 
                 <div class="section-block">
-                    <h3>🎵 INSTRUMENTOS Y SONIDO</h3>
+                    <h3> INSTRUMENTOS Y SONIDO</h3>
                     <p>
-                        Acompañada principalmente por el son característico de la flauta de caña (takuara), el tamborita y violines criollos que imitan la alegría de la selva y el llano.
+                        La música de la Chovena puede interpretarse con pífano o flauta de takuara, caja, tambora,
+                        violines y acordeón. Su ritmo se caracteriza por la alegría, el movimiento y la participación
+                        comunitaria.
                     </p>
                 </div>
 
                 <div class="info-grid">
                     <div class="grid-item">
-                        <span>Región</span>
-                        <strong>Chiquitania / Llanos</strong>
+                        <span>Reconocimiento</span>
+                        <strong>Patrimonio Cultural de Bolivia</strong>
                     </div>
+
                     <div class="grid-item">
                         <span>Instrumentos</span>
-                        <span>Tamborita y Takuaras</span>
+                        <strong>Takuara, caja, violín y acordeón</strong>
                     </div>
                 </div>
+
+                <!-- Fuente oficial -->
+                <p class="fuente-info">
+                    Fuente:
+                    <a href="https://www.lexivox.org/norms/BO-L-N213.xhtml" target="_blank" rel="noopener noreferrer">
+                        Ley N.º 213: La Chovena como Patrimonio Cultural e Inmaterial de Bolivia
+                    </a>.
+                </p>
             </aside>
         </div>
+    </div>
 
-        <footer>
-            <div class="controls-hint interactive">
-                🖱️ Mantén presionado el clic para girar y explorar el modelo 3D
-            </div>
-        </footer>
+    <footer>
+        <div class="controls-hint interactive">
+            🖱️ Mantén presionado el clic para girar y explorar el modelo 3D
+        </div>
+    </footer>
     </div>
 
     <script>
@@ -445,7 +510,7 @@
 
         // Cámara
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        
+
         function updateCameraPosition() {
             if (window.innerWidth > 900) {
                 camera.position.set(0, 0, 5.5);
@@ -517,11 +582,11 @@
         scene.add(characterGroup);
 
         // Modelo 1: Varón (`chovenahombre.glb`)
-        loader.load('chovenahombre.glb', function(gltf) {
+        loader.load('chovenahombre.glb', function (gltf) {
             chovenaHombreModel = gltf.scene;
             chovenaHombreModel.scale.set(3.0, 3.0, 3.0);
             chovenaHombreModel.position.set(1.2, -1.8, 0);
-            
+
             chovenaHombreModel.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -532,11 +597,11 @@
         });
 
         // Modelo 2: Mujer / Chovena general (`chovena.glb`)
-        loader.load('chovena.glb', function(gltf) {
+        loader.load('chovena.glb', function (gltf) {
             chovenaMujerModel = gltf.scene;
             chovenaMujerModel.scale.set(3.0, 3.0, 3.0);
             chovenaMujerModel.position.set(3.4, -1.8, 0);
-            
+
             chovenaMujerModel.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -579,4 +644,5 @@
         });
     </script>
 </body>
+
 </html>

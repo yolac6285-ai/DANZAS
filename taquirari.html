@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taquirari - Folclore de Bolivia</title>
-    
+
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Librerías Three.js (Versión unificada r128) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             user-select: none;
-        } 
-        
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background: radial-gradient(circle at center, #06192a 0%, #02050a 100%);
@@ -62,14 +65,22 @@
         .spinner-ring::before {
             content: '';
             position: absolute;
-            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
             background: #02050a;
             border-radius: 50%;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .loading-title {
@@ -125,7 +136,9 @@
             padding: 25px 35px;
         }
 
-        .interactive { pointer-events: auto; }
+        .interactive {
+            pointer-events: auto;
+        }
 
         /* === HEADER === */
         header {
@@ -150,7 +163,7 @@
             letter-spacing: 1.5px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .btn-back:hover {
@@ -171,7 +184,7 @@
             text-transform: uppercase;
             font-weight: 700;
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         /* === MAIN CONTENT LAYOUT === */
@@ -223,7 +236,7 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: 2px;
             line-height: 1.1;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
         }
 
         .detail-subtitle {
@@ -323,17 +336,51 @@
             font-size: 0.78rem;
             color: #dcd0c0;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         @media (max-width: 900px) {
-            .ui-container { padding: 15px; }
-            .main-content { justify-content: center; align-items: flex-end; }
-            .detail-card { width: 100%; max-height: 40vh; }
-            .controls-hint { display: none; }
+            .ui-container {
+                padding: 15px;
+            }
+
+            .main-content {
+                justify-content: center;
+                align-items: flex-end;
+            }
+
+            .detail-card {
+                width: 100%;
+                max-height: 40vh;
+            }
+
+            .controls-hint {
+                display: none;
+            }
+        }
+
+        .fuente-info {
+            margin-top: 18px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.75rem;
+            line-height: 1.4;
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .fuente-info a {
+            color: #fcd116;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .fuente-info a:hover {
+            color: #ffffff;
         }
     </style>
 </head>
+
 <body>
 
     <!-- Pantalla de Carga -->
@@ -367,45 +414,63 @@
                 </div>
 
                 <div class="section-block">
-                    <h3> RITMO Y ROMANCE TROPICAL</h3>
+                    <h3>RITMO Y ROMANCE TROPICAL</h3>
                     <p>
-                        Considerado el rey de la música y danza de los llanos orientales de Bolivia. Su ritmo alegre, cadencioso y romántico evoca la belleza de la llanura, la brisa tropical y la calidez de su gente.
+                        El Taquirari es un ritmo musical y una danza tradicional del oriente boliviano, especialmente de
+                        Santa Cruz, Beni y Pando. Se caracteriza por su ritmo alegre, cadencioso y romántico,
+                        relacionado con la cultura oriental y la identidad de los pueblos de los llanos.
                     </p>
                 </div>
 
                 <div class="section-block">
-                    <h3> VESTIMENTA CARACTERÍSTICA</h3>
+                    <h3>VESTIMENTA CARACTERÍSTICA</h3>
                     <p>
-                        <strong>Varón:</strong> Camisa blanca holgada, pantalón blanco, un pañuelo al cuello y sombrero de sao, reflejo del chalán o hacedor de campo oriental.<br>
-                        <strong>Mujer:</strong> El tradicional tipoy (vestido largo de una sola pieza sin mangas), adornado frecuentemente con flores coloridas en el cabello, destacando elegancia y soltura al compás del baile.
+                        <strong>Varón:</strong> Camisa blanca holgada, pantalón claro, pañuelo al cuello y sombrero de
+                        sao, elementos relacionados con la vestimenta tradicional del oriente boliviano.
+                        <br><br>
+                        <strong>Mujer:</strong> Tipoy, vestido tradicional largo y amplio, generalmente acompañado de
+                        flores en el cabello. La vestimenta permite movimientos libres y elegantes durante el baile.
                     </p>
                 </div>
 
                 <div class="section-block">
-                    <h3> INSTRUMENTOS Y EXPRESIÓN</h3>
+                    <h3>INSTRUMENTOS Y EXPRESIÓN</h3>
                     <p>
-                        Interpretado primordialmente con la guitarra criolla, el acordeón y el bombo, marcando melodías nostálgicas pero llenas de vitalidad y coqueteo en pareja.
+                        El Taquirari suele interpretarse con guitarra, acordeón, bombo y otros instrumentos musicales.
+                        Se baila en pareja con movimientos alegres, cadenciosos y románticos, acompañados frecuentemente
+                        por el uso de pañuelos.
                     </p>
                 </div>
 
                 <div class="info-grid">
                     <div class="grid-item">
-                        <span>Origen</span>
-                        <strong>Llanos de Moxos</strong>
+                        <span>Reconocimiento</span>
+                        <strong>Patrimonio Cultural e Inmaterial de Bolivia</strong>
                     </div>
+
                     <div class="grid-item">
-                        <span>Carácter</span>
-                        <strong>Romántico y Alegre</strong>
+                        <span>Origen cultural</span>
+                        <strong>Oriente boliviano</strong>
                     </div>
                 </div>
+
+                <!-- Fuente oficial -->
+                <p class="fuente-info">
+                    Fuente:
+                    <a href="https://www.lexivox.org/norms/BO-L-N210.xhtml" target="_blank" rel="noopener noreferrer">
+                        Ley N.º 210, que declara Patrimonio Cultural e Inmaterial del Estado Plurinacional de Bolivia a
+                        la danza El Taquirari
+                    </a>.
+                </p>
             </aside>
         </div>
+    </div>
 
-        <footer>
-            <div class="controls-hint interactive">
-                🖱️ Mantén presionado el clic para girar y explorar el modelo 3D
-            </div>
-        </footer>
+    <footer>
+        <div class="controls-hint interactive">
+            🖱️ Mantén presionado el clic para girar y explorar el modelo 3D
+        </div>
+    </footer>
     </div>
 
     <script>
@@ -445,7 +510,7 @@
 
         // Cámara
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        
+
         function updateCameraPosition() {
             if (window.innerWidth > 900) {
                 camera.position.set(0, 0, 5.5);
@@ -517,11 +582,11 @@
         scene.add(characterGroup);
 
         // Modelo 1: Varón 
-        loader.load('takirari.glb', function(gltf) {
+        loader.load('takirari.glb', function (gltf) {
             taquirariHombreModel = gltf.scene;
             taquirariHombreModel.scale.set(3.0, 3.0, 3.0);
             taquirariHombreModel.position.set(1.2, -1.8, 0);
-            
+
             taquirariHombreModel.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -532,11 +597,11 @@
         });
 
         // Modelo 2: Mujer 
-        loader.load('takirarimujer.glb', function(gltf) {
+        loader.load('takirarimujer.glb', function (gltf) {
             taquirariMujerModel = gltf.scene;
             taquirariMujerModel.scale.set(3.0, 3.0, 3.0);
             taquirariMujerModel.position.set(3.4, -1.8, 0);
-            
+
             taquirariMujerModel.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -579,4 +644,5 @@
         });
     </script>
 </body>
+
 </html>

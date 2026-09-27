@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danzas Principales de Bolivia - Experiencia 3D</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Montserrat:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             user-select: none;
         }
-        
+
         body {
             font-family: 'Montserrat', sans-serif;
             background: radial-gradient(circle at center, #26140b 0%, #080402 100%);
@@ -69,8 +72,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .loading-title {
@@ -127,8 +135,8 @@
             pointer-events: none;
         }
 
-        .interactive { 
-            pointer-events: auto; 
+        .interactive {
+            pointer-events: auto;
         }
 
         /* === HEADER === */
@@ -198,11 +206,11 @@
             gap: 15px;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.65);
+            background: rgba(0, 0, 0, 0.65);
             padding: 10px 20px;
             border-radius: 30px;
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .btn-region {
@@ -269,8 +277,15 @@
             text-align: justify;
         }
 
-        .highlight-gold { color: #fcd116; font-weight: 700; }
-        .highlight-dance { color: #e2c08d; font-style: italic; }
+        .highlight-gold {
+            color: #fcd116;
+            font-weight: 700;
+        }
+
+        .highlight-dance {
+            color: #e2c08d;
+            font-style: italic;
+        }
 
         /* === BARRA INFERIOR DE TARJETAS DE DANZAS === */
         .dances-bottom-bar {
@@ -350,7 +365,7 @@
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 3px;
+            c: \Users\NEO\Pictures\iidai\DANZAS\DANZAS margin-bottom: 3px;
         }
 
         .dance-card .card-title {
@@ -367,19 +382,50 @@
         }
 
         @media (max-width: 1000px) {
-            .logo-area { justify-content: center; flex-direction: column; text-align: center; }
-            .main-title { font-size: 2rem; }
-            .top-navbar { flex-wrap: wrap; }
+            .logo-area {
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .top-navbar {
+                flex-wrap: wrap;
+            }
+
             .info-card {
                 position: relative;
-                top: auto; left: auto;
+                top: auto;
+                left: auto;
                 margin: 10px auto;
                 width: 90vw;
                 max-height: 25vh;
             }
         }
+
+        .fuente-info {
+            font-size: 0.75rem !important;
+            font-style: italic;
+            color: #aaa !important;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        .fuente-info a {
+            color: #fcd116;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .fuente-info a:hover {
+            color: #ffffff;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- Pantalla de carga -->
@@ -404,7 +450,7 @@
                     <span class="subtitle">Experiencia 3D Inmersiva e Interactiva</span>
                 </div>
             </div>
-            
+
             <!-- Filtros de Regiones -->
             <nav class="top-navbar interactive" id="filtros">
                 <button class="btn-region active" data-region="todas"> TODA BOLIVIA</button>
@@ -418,22 +464,40 @@
         <aside class="info-card interactive">
             <h2>RIQUEZA CULTURAL</h2>
             <p>
-                Bolivia posee una de las expresiones folklóricas más vibrantes del mundo, reconocida como 
-                <span class="highlight-gold">Patrimonio Cultural</span>. Cada danza narra la historia y cosmovisión de sus pueblos.
+                Bolivia posee una de las expresiones folklóricas más vibrantes del mundo, reconocida como
+                <span class="highlight-gold">Patrimonio Cultural</span>. Cada danza narra la historia y cosmovisión de
+                sus pueblos.
             </p>
             <p>
-                En la <span class="highlight-gold">Zona Andina</span> (La Paz, Oruro y Potosí), danzas como la 
-                <span class="highlight-dance">Morenada</span>, la <span class="highlight-dance">Diablada</span> y el 
+                En la <span class="highlight-gold">Zona Andina</span> (La Paz, Oruro y Potosí), danzas como la
+                <span class="highlight-dance">Morenada</span>, la <span class="highlight-dance">Diablada</span> y el
                 <span class="highlight-dance">Tinku</span> expresan el profundo sincretismo religioso.
             </p>
             <p>
-                En los <span class="highlight-gold">Valles</span>, destacan el <span class="highlight-dance">Pujllay</span>, la elegante <span class="highlight-dance">Cueca Boliviana</span> y la festiva <span class="highlight-dance">Cueca Chapaca</span> de Tarija.
+                En los <span class="highlight-gold">Valles</span>, destacan el <span
+                    class="highlight-dance">Pujllay</span>, la elegante <span class="highlight-dance">Cueca
+                    Boliviana</span> y la festiva <span class="highlight-dance">Cueca Chapaca</span> de Tarija.
             </p>
             <p>
-                En los <span class="highlight-gold">Llanos</span>, los <span class="highlight-dance">Macheteros</span>, el <span class="highlight-dance">Taquirari</span> y la <span class="highlight-dance">Chovena</span> celebran la naturaleza.
+                En los <span class="highlight-gold">Llanos</span>, los <span class="highlight-dance">Macheteros</span>,
+                el <span class="highlight-dance">Taquirari</span> y la <span class="highlight-dance">Chovena</span>
+                celebran la naturaleza.
+            </p>
+
+
+            <p class="fuente-info">
+                Fuente:
+                <a href="https://www.turismoyculturas.gob.bo/nota_prensa/bolivia-celebra-su-patrimonio-cultural-inmaterial/"
+                    target="_blank" rel="noopener noreferrer">
+                    Ministerio de Culturas de Bolivia
+                </a>
+                y
+                <a href="https://ich.unesco.org/es/estado/bolivia-estado-plurinacional-de-BO?info=elementos-en-las-listas"
+                    target="_blank" rel="noopener noreferrer">
+                    Registros de Patrimonio Cultural Inmaterial de la UNESCO
+                </a>.
             </p>
         </aside>
-
         <!-- TARJETAS DE DANZAS INFERIORES CON FOTOGRAFÍAS -->
         <div class="dances-bottom-bar interactive" id="dances-grid">
             <a href="diablada.html" class="dance-card" data-region="andina">
@@ -443,7 +507,7 @@
                 <span class="card-region">ANDINA</span>
                 <span class="card-title">DIABLADA</span>
             </a>
-            
+
             <a href="morenada.html" class="dance-card" data-region="andina">
                 <div class="card-img-container">
                     <img src="img/more.png" alt="Morenada" class="card-img">
@@ -451,7 +515,7 @@
                 <span class="card-region">ANDINA</span>
                 <span class="card-title">MORENADA</span>
             </a>
-            
+
             <a href="tinku.html" class="dance-card" data-region="andina">
                 <div class="card-img-container">
                     <img src="img/tinkus.png" alt="Tinku" class="card-img">
@@ -459,7 +523,7 @@
                 <span class="card-region">ANDINA</span>
                 <span class="card-title">TINKU</span>
             </a>
-            
+
             <a href="pujllay.html" class="dance-card" data-region="valles">
                 <div class="card-img-container">
                     <img src="img/puj.png" alt="Pujllay" class="card-img">
@@ -467,7 +531,7 @@
                 <span class="card-region">VALLES</span>
                 <span class="card-title">PUJLLAY</span>
             </a>
-            
+
             <a href="cueca.html" class="dance-card" data-region="valles">
                 <div class="card-img-container">
                     <img src="img/cue.png" alt="Cueca Cochala" class="card-img">
@@ -483,7 +547,7 @@
                 <span class="card-region">VALLES</span>
                 <span class="card-title">CUECA CHAPACA</span>
             </a>
-            
+
             <a href="macheteros.html" class="dance-card" data-region="llanos">
                 <div class="card-img-container">
                     <img src="img/ma.png" alt="Macheteros" class="card-img">
@@ -491,7 +555,7 @@
                 <span class="card-region">LLANOS</span>
                 <span class="card-title">MACHETEROS</span>
             </a>
-            
+
             <a href="taquirari.html" class="dance-card" data-region="llanos">
                 <div class="card-img-container">
                     <img src="img/ta.png" alt="Taquirari" class="card-img">
@@ -499,7 +563,7 @@
                 <span class="card-region">LLANOS</span>
                 <span class="card-title">TAQUIRARI</span>
             </a>
-            
+
             <a href="chovena.html" class="dance-card" data-region="llanos">
                 <div class="card-img-container">
                     <img src="img/cho.png" alt="Chovena" class="card-img">
@@ -533,13 +597,13 @@
         };
 
         var scene, camera, renderer, controls, particleSystem;
-        let mapaBolivia; 
+        let mapaBolivia;
         let modelosAnimados = [];
 
         const container = document.getElementById('webgl-container');
 
         scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x0a0604, 0.008); 
+        scene.fog = new THREE.FogExp2(0x0a0604, 0.008);
 
         renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -549,15 +613,15 @@
         container.appendChild(renderer.domElement);
 
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 7, 10); 
-        camera.lookAt(0, 0, 0); 
+        camera.position.set(0, 7, 10);
+        camera.lookAt(0, 0, 0);
 
         controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.autoRotate = false; 
-        controls.enableZoom = true; 
-        controls.enableRotate = true; 
-        controls.enablePan = true; 
-        controls.target.set(0, 0, 0); 
+        controls.autoRotate = false;
+        controls.enableZoom = true;
+        controls.enableRotate = true;
+        controls.enablePan = true;
+        controls.target.set(0, 0, 0);
 
         // ILUMINACIÓN
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
@@ -579,11 +643,11 @@
             const coreGeo = new THREE.SphereGeometry(0.2, 16, 16);
             const coreMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending });
             const core = new THREE.Mesh(coreGeo, coreMat);
-            
+
             const haloGeo = new THREE.SphereGeometry(1.0, 16, 16);
             const haloMat = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.25, blending: THREE.AdditiveBlending, depthWrite: false });
             const halo = new THREE.Mesh(haloGeo, haloMat);
-            
+
             const group = new THREE.Group();
             group.add(core);
             group.add(halo);
@@ -602,16 +666,16 @@
         const positions = [], particleColors = [], sizes = [];
 
         for (let i = 0; i < particleCount; i++) {
-            const x = (Math.random() - 0.5) * 40; 
+            const x = (Math.random() - 0.5) * 40;
             const y = (Math.random() - 0.5) * 20;
             const z = (Math.random() - 0.5) * 20 - 5;
             positions.push(x, y, z);
 
             let c = new THREE.Color();
-            if (x < -4) c.setHex(Math.random() > 0.3 ? 0xcc1122 : 0xdd4444); 
+            if (x < -4) c.setHex(Math.random() > 0.3 ? 0xcc1122 : 0xdd4444);
             else if (x > 4) c.setHex(Math.random() > 0.3 ? 0x00cc44 : 0x22cc66);
             else c.setHex(Math.random() > 0.5 ? 0xd4af37 : 0xe6c200);
-            
+
             particleColors.push(c.r, c.g, c.b);
             sizes.push(Math.random() * 1.8 + 0.4);
         }
@@ -630,49 +694,49 @@
         const loader = new THREE.GLTFLoader(loadingManager);
 
         function cargarModeloSeguro(url, region, configuracionCallback) {
-            loader.load(url, function(gltf) {
+            loader.load(url, function (gltf) {
                 gltf.scene.userData.region = region;
                 configuracionCallback(gltf.scene);
                 modelosAnimados.push(gltf.scene);
-            }, undefined, function(error) {
+            }, undefined, function (error) {
                 console.error('Ocurrió un error cargando el modelo: ' + url, error);
             });
         }
 
         // MODELOS VALLES
-        cargarModeloSeguro("chapaco.glb", "valles", function(e) { e.scale.set(2.7, 2.7, 2.7); e.position.set(1, -5.2, 1); e.userData.baseY = -5.2; scene.add(e); });
-        cargarModeloSeguro("chapaca.glb", "valles", function(e) { e.scale.set(2.7, 2.7, 2.7); e.position.set(0, -5.2, 1); e.userData.baseY = -5.2; scene.add(e); });
-        cargarModeloSeguro("pujllayhombre.glb", "valles", function(e) { e.scale.set(1.9, 1.9, 1.9); e.position.set(-0.5, -2.5, 1); e.userData.baseY = -2.5; scene.add(e); });
-        cargarModeloSeguro("pujllaychica.glb", "valles", function(e) { e.scale.set(2.1, 2.1, 2.1); e.position.set(0.5, -2.5, 1); e.userData.baseY = -2.5; scene.add(e); });
-        cargarModeloSeguro("cuecamujer.glb", "valles", function(e) { e.scale.set(1.7, 1.7, 1.7); e.position.set(-0.3, 0.6, 1); e.userData.baseY = 0.6; scene.add(e); });
-        cargarModeloSeguro("cuecavaron.glb", "valles", function(e) { e.scale.set(1.7, 1.7, 1.7); e.position.set(-1.1, 0.6, 1); e.userData.baseY = 0.6; scene.add(e); });
-        cargarModeloSeguro("sombrero.glb", "valles", function(e) { e.scale.set(2.5, 2.5, 2.5); e.position.set(5.4, 1.3, 1); e.userData.baseY = 1.3; e.userData.noRotar = true; scene.add(e); });
-        cargarModeloSeguro("sombrerop.glb", "valles", function(e) { e.scale.set(3.5, 3.5, 3.5); e.position.set(12, -6, 1); e.userData.baseY = -6; e.userData.noRotar = true; scene.add(e); });
+        cargarModeloSeguro("chapaco.glb", "valles", function (e) { e.scale.set(2.7, 2.7, 2.7); e.position.set(1, -5.2, 1); e.userData.baseY = -5.2; scene.add(e); });
+        cargarModeloSeguro("chapaca.glb", "valles", function (e) { e.scale.set(2.7, 2.7, 2.7); e.position.set(0, -5.2, 1); e.userData.baseY = -5.2; scene.add(e); });
+        cargarModeloSeguro("pujllayhombre.glb", "valles", function (e) { e.scale.set(1.9, 1.9, 1.9); e.position.set(-0.5, -2.5, 1); e.userData.baseY = -2.5; scene.add(e); });
+        cargarModeloSeguro("pujllaychica.glb", "valles", function (e) { e.scale.set(2.1, 2.1, 2.1); e.position.set(0.5, -2.5, 1); e.userData.baseY = -2.5; scene.add(e); });
+        cargarModeloSeguro("cuecamujer.glb", "valles", function (e) { e.scale.set(1.7, 1.7, 1.7); e.position.set(-0.3, 0.6, 1); e.userData.baseY = 0.6; scene.add(e); });
+        cargarModeloSeguro("cuecavaron.glb", "valles", function (e) { e.scale.set(1.7, 1.7, 1.7); e.position.set(-1.1, 0.6, 1); e.userData.baseY = 0.6; scene.add(e); });
+        cargarModeloSeguro("sombrero.glb", "valles", function (e) { e.scale.set(2.5, 2.5, 2.5); e.position.set(5.4, 1.3, 1); e.userData.baseY = 1.3; e.userData.noRotar = true; scene.add(e); });
+        cargarModeloSeguro("sombrerop.glb", "valles", function (e) { e.scale.set(3.5, 3.5, 3.5); e.position.set(12, -6, 1); e.userData.baseY = -6; e.userData.noRotar = true; scene.add(e); });
 
         // MODELOS ZONA ANDINA
-        cargarModeloSeguro("tinkusmujer.glb", "andina", function(e) { e.scale.set(2.7, 2.7, 2.7); e.position.set(-1.8, -3.7, 1); e.userData.baseY = -3.7; scene.add(e); });
-        cargarModeloSeguro("tinkus.glb", "andina", function(e) { e.scale.set(2.7, 2.7, 2.7); e.position.set(-3, -3.7, 1); e.userData.baseY = -3.7; scene.add(e); });
-        cargarModeloSeguro("morenada.glb", "andina", function(e) { e.scale.set(2, 2, 2); e.position.set(-2.5, 1.9, 1); e.userData.baseY = 1.9; scene.add(e); });
-        cargarModeloSeguro("morenadachica.glb", "andina", function(e) { e.scale.set(1.7, 1.7, 1.7); e.position.set(-2.2, 0.8, 1); e.userData.baseY = 0.8; scene.add(e); });
-        cargarModeloSeguro("diablo.glb", "andina", function(e) { e.scale.set(2.2, 2.2, 2.2); e.position.set(-3, -1, 1); e.userData.baseY = -1; scene.add(e); });
-        cargarModeloSeguro("diabla.glb", "andina", function(e) { e.scale.set(2.2, 2.2, 2.2); e.position.set(-1.9, -1, 1); e.userData.baseY = -1; scene.add(e); });
-        cargarModeloSeguro("mascara.glb", "andina", function(e) { e.scale.set(3, 3, 3); e.position.set(7.4, 2.3, 1); e.userData.baseY = 2.3; e.userData.noRotar = true; scene.add(e); });
-        cargarModeloSeguro("morenadamasc.glb", "andina", function(e) { e.scale.set(3.5, 3.5, 3.5); e.position.set(10, -1.9, 1); e.userData.baseY = -1.9; e.userData.noRotar = true; scene.add(e); });
-        cargarModeloSeguro("montera.glb", "andina", function(e) { e.scale.set(3.5, 3.5, 3.5); e.position.set(6.5, -2.5, 1); e.userData.baseY = -2.5; e.userData.noRotar = true; scene.add(e); });
+        cargarModeloSeguro("tinkusmujer.glb", "andina", function (e) { e.scale.set(2.7, 2.7, 2.7); e.position.set(-1.8, -3.7, 1); e.userData.baseY = -3.7; scene.add(e); });
+        cargarModeloSeguro("tinkus.glb", "andina", function (e) { e.scale.set(2.7, 2.7, 2.7); e.position.set(-3, -3.7, 1); e.userData.baseY = -3.7; scene.add(e); });
+        cargarModeloSeguro("morenada.glb", "andina", function (e) { e.scale.set(2, 2, 2); e.position.set(-2.5, 1.9, 1); e.userData.baseY = 1.9; scene.add(e); });
+        cargarModeloSeguro("morenadachica.glb", "andina", function (e) { e.scale.set(1.7, 1.7, 1.7); e.position.set(-2.2, 0.8, 1); e.userData.baseY = 0.8; scene.add(e); });
+        cargarModeloSeguro("diablo.glb", "andina", function (e) { e.scale.set(2.2, 2.2, 2.2); e.position.set(-3, -1, 1); e.userData.baseY = -1; scene.add(e); });
+        cargarModeloSeguro("diabla.glb", "andina", function (e) { e.scale.set(2.2, 2.2, 2.2); e.position.set(-1.9, -1, 1); e.userData.baseY = -1; scene.add(e); });
+        cargarModeloSeguro("mascara.glb", "andina", function (e) { e.scale.set(3, 3, 3); e.position.set(7.4, 2.3, 1); e.userData.baseY = 2.3; e.userData.noRotar = true; scene.add(e); });
+        cargarModeloSeguro("morenadamasc.glb", "andina", function (e) { e.scale.set(3.5, 3.5, 3.5); e.position.set(10, -1.9, 1); e.userData.baseY = -1.9; e.userData.noRotar = true; scene.add(e); });
+        cargarModeloSeguro("montera.glb", "andina", function (e) { e.scale.set(3.5, 3.5, 3.5); e.position.set(6.5, -2.5, 1); e.userData.baseY = -2.5; e.userData.noRotar = true; scene.add(e); });
 
         // MODELOS LLANOS ORIENTALES
-        cargarModeloSeguro("machetero.glb", "llanos", function(e) { e.scale.set(1.6, 1.6, 1.6); e.position.set(-0.7, 2.3, 1); e.userData.baseY = 2.3; scene.add(e); });
-        cargarModeloSeguro("macheteromujer.glb", "llanos", function(e) { e.scale.set(1.5, 1.3, 1.3); e.position.set(0, 2.3, 1); e.userData.baseY = 2.3; scene.add(e); });
-        cargarModeloSeguro("takirari.glb", "llanos", function(e) { e.scale.set(1.9, 1.9, 1.9); e.position.set(1.3, 0, 1); e.userData.baseY = 0; scene.add(e); });
-        cargarModeloSeguro("takirarimujer.glb", "llanos", function(e) { e.scale.set(1.9, 1.9, 1.9); e.position.set(2.5, -0.6, 1); e.userData.baseY = -0.6; scene.add(e); });
-        cargarModeloSeguro("chovena.glb", "llanos", function(e) { e.scale.set(1.3, 1.3, 1.3); e.position.set(-1, 3.8, 1); e.userData.baseY = 3.9; scene.add(e); });
-        cargarModeloSeguro("chovenahombre.glb", "llanos", function(e) { e.scale.set(1.3, 1.3, 1.3); e.position.set(-1.8, 3.8, 1); e.userData.baseY = 3.7; scene.add(e); });
+        cargarModeloSeguro("machetero.glb", "llanos", function (e) { e.scale.set(1.6, 1.6, 1.6); e.position.set(-0.7, 2.3, 1); e.userData.baseY = 2.3; scene.add(e); });
+        cargarModeloSeguro("macheteromujer.glb", "llanos", function (e) { e.scale.set(1.5, 1.3, 1.3); e.position.set(0, 2.3, 1); e.userData.baseY = 2.3; scene.add(e); });
+        cargarModeloSeguro("takirari.glb", "llanos", function (e) { e.scale.set(1.9, 1.9, 1.9); e.position.set(1.3, 0, 1); e.userData.baseY = 0; scene.add(e); });
+        cargarModeloSeguro("takirarimujer.glb", "llanos", function (e) { e.scale.set(1.9, 1.9, 1.9); e.position.set(2.5, -0.6, 1); e.userData.baseY = -0.6; scene.add(e); });
+        cargarModeloSeguro("chovena.glb", "llanos", function (e) { e.scale.set(1.3, 1.3, 1.3); e.position.set(-1, 3.8, 1); e.userData.baseY = 3.9; scene.add(e); });
+        cargarModeloSeguro("chovenahombre.glb", "llanos", function (e) { e.scale.set(1.3, 1.3, 1.3); e.position.set(-1.8, 3.8, 1); e.userData.baseY = 3.7; scene.add(e); });
 
         // MAPA
-        loader.load('mapa.glb', function(gltf) {
+        loader.load('mapa.glb', function (gltf) {
             mapaBolivia = gltf.scene;
-            mapaBolivia.scale.set(20, 20, 20); 
-            mapaBolivia.position.set(1, -11, 0); 
+            mapaBolivia.scale.set(20, 20, 20);
+            mapaBolivia.position.set(1, -11, 0);
             scene.add(mapaBolivia);
         });
 
@@ -684,12 +748,12 @@
             btn.addEventListener('click', () => {
                 botones.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
+
                 const regionSeleccionada = btn.getAttribute('data-region');
-                
+
                 // Filtrar modelos 3D
                 modelosAnimados.forEach(modelo => {
-                    if(regionSeleccionada === 'todas' || modelo.userData.region === regionSeleccionada) {
+                    if (regionSeleccionada === 'todas' || modelo.userData.region === regionSeleccionada) {
                         modelo.visible = true;
                     } else {
                         modelo.visible = false;
@@ -698,7 +762,7 @@
 
                 // Filtrar Tarjetas Inferiores
                 danceCards.forEach(card => {
-                    if(regionSeleccionada === 'todas' || card.getAttribute('data-region') === regionSeleccionada) {
+                    if (regionSeleccionada === 'todas' || card.getAttribute('data-region') === regionSeleccionada) {
                         card.style.display = 'flex';
                     } else {
                         card.style.display = 'none';
@@ -714,7 +778,7 @@
             const time = clock.getElapsedTime();
 
             if (particleSystem) {
-                particleSystem.rotation.y = time * 0.1; 
+                particleSystem.rotation.y = time * 0.1;
             }
 
             redLight.scale.setScalar(1 + Math.sin(time * 3) * 0.1);
@@ -730,7 +794,7 @@
                     if (!modelo.userData.noRotar) {
                         modelo.rotation.y += 0.01;
                     }
-                    if(modelo.userData.baseY !== undefined) {
+                    if (modelo.userData.baseY !== undefined) {
                         modelo.position.y = modelo.userData.baseY + Math.sin(time * 3) * 0.2;
                     }
                 }
@@ -748,4 +812,5 @@
         });
     </script>
 </body>
+
 </html>

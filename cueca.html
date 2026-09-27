@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cueca Cochabambina - Folclore de Bolivia</title>
-    
+
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Librerías Three.js (Versión unificada r128) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             user-select: none;
-        } 
-        
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background: radial-gradient(circle at center, #2b1206 0%, #070301 100%);
@@ -62,14 +65,22 @@
         .spinner-ring::before {
             content: '';
             position: absolute;
-            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
             background: #070301;
             border-radius: 50%;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .loading-title {
@@ -125,7 +136,9 @@
             padding: 25px 35px;
         }
 
-        .interactive { pointer-events: auto; }
+        .interactive {
+            pointer-events: auto;
+        }
 
         /* === HEADER === */
         header {
@@ -150,7 +163,7 @@
             letter-spacing: 1.5px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .btn-back:hover {
@@ -171,7 +184,7 @@
             text-transform: uppercase;
             font-weight: 700;
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         /* === MAIN CONTENT LAYOUT === */
@@ -223,7 +236,7 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
             line-height: 1.1;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
         }
 
         .detail-subtitle {
@@ -323,17 +336,51 @@
             font-size: 0.78rem;
             color: #dcd0c0;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         @media (max-width: 900px) {
-            .ui-container { padding: 15px; }
-            .main-content { justify-content: center; align-items: flex-end; }
-            .detail-card { width: 100%; max-height: 40vh; }
-            .controls-hint { display: none; }
+            .ui-container {
+                padding: 15px;
+            }
+
+            .main-content {
+                justify-content: center;
+                align-items: flex-end;
+            }
+
+            .detail-card {
+                width: 100%;
+                max-height: 40vh;
+            }
+
+            .controls-hint {
+                display: none;
+            }
+        }
+
+        .fuente-info {
+            margin-top: 18px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.75rem;
+            line-height: 1.4;
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .fuente-info a {
+            color: #fcd116;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .fuente-info a:hover {
+            color: #ffffff;
         }
     </style>
 </head>
+
 <body>
 
     <!-- Pantalla de Carga -->
@@ -369,22 +416,35 @@
                 <div class="section-block">
                     <h3>📜 TRADICIÓN Y ALEGRÍA</h3>
                     <p>
-                        La cueca cochabambina destaca por su ritmo alegre, picardía y elegancia criolla. Representa la campiña del valle, la hospitalidad de su gente y el galanteo amoroso donde el varón busca conquistar a la qhochala mediante giros sutiles y el flamear del pañuelo.
+                        La cueca cochabambina destaca por su ritmo alegre, picardía y elegancia criolla. Representa la
+                        campiña del valle, la hospitalidad de su gente y el galanteo amoroso donde el varón busca
+                        conquistar a la qhochala mediante giros sutiles y el flamear del pañuelo.
                     </p>
                 </div>
 
                 <div class="section-block">
-                    <h3>👗 VESTIMENTA TÍPICA</h3>
+                    <h3> VESTIMENTA TÍPICA</h3>
                     <p>
-                        <strong>Varón:</strong> Sombrero de oveja, camisa blanca, chaqueta o chaleco tradicional, pantalón de vestir y zapatos de cuero.<br>
-                        <strong>Mujer:</strong> Pollera de bayeta o satén de colores vivos, blusa blanca con encajes finos, sombrero de cogollo o borsalino, manta de vicuña o tejida y una vistosa tranza larga.
+                        <strong>Varón:</strong> Sombrero de oveja, camisa blanca, chaqueta o chaleco tradicional,
+                        pantalón de vestir y zapatos de cuero.<br>
+                        <strong>Mujer:</strong> Pollera de bayeta o satén de colores vivos, blusa blanca con encajes
+                        finos, sombrero de cogollo o borsalino, manta de vicuña o tejida y una vistosa tranza larga.
                     </p>
                 </div>
 
                 <div class="section-block">
-                    <h3>🎵 EXPRESIÓN MUSICAL</h3>
+                    <h3> EXPRESIÓN MUSICAL</h3>
                     <p>
-                        Interpretada con guitarras, charango y acordeón, con un tempo más vivaz y cadencioso característico de la región valluna.
+                        Interpretada con guitarras, charango y acordeón, con un tempo más vivaz y cadencioso
+                        característico de la región valluna.
+                    </p>
+                    <p class="fuente-info">
+                        Fuente:
+                        <a href="https://www.lexivox.org/norms/BO-L-N764.xhtml" target="_blank"
+                            rel="noopener noreferrer">
+                            Ley N.º 764: Declaratoria de la Cueca Boliviana como Patrimonio Cultural Inmaterial de
+                            Bolivia
+                        </a>
                     </p>
                 </div>
 
@@ -445,7 +505,7 @@
 
         // Cámara
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        
+
         function updateCameraPosition() {
             if (window.innerWidth > 900) {
                 camera.position.set(0, 0, 5.5);
@@ -517,11 +577,11 @@
         scene.add(characterGroup);
 
         // Modelo 1: Varón (`cuecavaron.glb`)
-        loader.load('cuecavaron.glb', function(gltf) {
+        loader.load('cuecavaron.glb', function (gltf) {
             cuecaVaronModel = gltf.scene;
             cuecaVaronModel.scale.set(3.0, 3.0, 3.0);
             cuecaVaronModel.position.set(1.2, -1.8, 0);
-            
+
             cuecaVaronModel.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -532,11 +592,11 @@
         });
 
         // Modelo 2: Mujer (`cuecamujer.glb`)
-        loader.load('cuecamujer.glb', function(gltf) {
+        loader.load('cuecamujer.glb', function (gltf) {
             cuecaMujerModel = gltf.scene;
             cuecaMujerModel.scale.set(3.0, 3.0, 3.0);
             cuecaMujerModel.position.set(3.4, -1.8, 0);
-            
+
             cuecaMujerModel.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -579,4 +639,5 @@
         });
     </script>
 </body>
+
 </html>

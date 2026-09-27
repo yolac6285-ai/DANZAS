@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cueca Chapaca - Folclore de Bolivia</title>
-    
+
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Librerías Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             user-select: none;
         }
-        
+
         body {
             font-family: 'Montserrat', sans-serif;
             background: radial-gradient(circle at center, #2e180d 0%, #0a0503 100%);
@@ -62,14 +65,22 @@
         .spinner-ring::before {
             content: '';
             position: absolute;
-            top: 6px; left: 6px; right: 6px; bottom: 6px;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
             background: #070504;
             border-radius: 50%;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .loading-title {
@@ -125,7 +136,9 @@
             padding: 25px 35px;
         }
 
-        .interactive { pointer-events: auto; }
+        .interactive {
+            pointer-events: auto;
+        }
 
         /* === HEADER === */
         header {
@@ -150,7 +163,7 @@
             letter-spacing: 1.5px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .btn-back:hover {
@@ -171,7 +184,7 @@
             text-transform: uppercase;
             font-weight: 700;
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         /* === MAIN CONTENT LAYOUT === */
@@ -224,7 +237,7 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: 2px;
             line-height: 1.1;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
         }
 
         .detail-subtitle {
@@ -324,17 +337,51 @@
             font-size: 0.78rem;
             color: #dcd0c0;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         @media (max-width: 900px) {
-            .ui-container { padding: 15px; }
-            .main-content { justify-content: center; align-items: flex-end; }
-            .detail-card { width: 100%; max-height: 40vh; }
-            .controls-hint { display: none; }
+            .ui-container {
+                padding: 15px;
+            }
+
+            .main-content {
+                justify-content: center;
+                align-items: flex-end;
+            }
+
+            .detail-card {
+                width: 100%;
+                max-height: 40vh;
+            }
+
+            .controls-hint {
+                display: none;
+            }
+        }
+
+        .fuente-info {
+            margin-top: 18px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.75rem;
+            line-height: 1.4;
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .fuente-info a {
+            color: #fcd116;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .fuente-info a:hover {
+            color: #ffffff;
         }
     </style>
 </head>
+
 <body>
 
     <!-- Pantalla de Carga -->
@@ -363,42 +410,55 @@
             <!-- Tarjeta Informativa -->
             <aside class="detail-card interactive">
                 <div class="header-title-group">
-                    <h1 class="detail-title">CUECA CHAPACA</h1>
-                    <div class="detail-subtitle">Tarija • Bolivia</div>
-                </div>
-
-                <div class="section-block">
-                    <h3>📜 ORIGEN E HISTORIA</h3>
-                    <p>
-                        Expresión dancística refinada y alegre del valle tarijeño. Derivada de formas lírico-musicales coloniales, personifica el elegante galanteo entre el mozo y la "chura moza".
-                    </p>
-                </div>
-
-                <div class="section-block">
-                    <h3>👗 VESTIMENTA TRADICIONAL</h3>
-                    <p>
-                        <strong>Mujer:</strong> Pollera viva, blusa bordada, sombrero chapaco, mantón de seda y flor.<br>
-                        <strong>Varón:</strong> Pantalón oscuro, camisa blanca, poncho tarijeño y sombrero.
-                    </p>
-                </div>
-
-                <div class="section-block">
-                    <h3>🎵 RITMO Y COREOGRAFÍA</h3>
-                    <p>
-                        Compuesta por Introducción, Quimba (coqueteo tenue con pañuelo) y Remate (zapateo festivo).
-                    </p>
-                </div>
-
-                <div class="info-grid">
-                    <div class="grid-item">
-                        <span>Elemento clave</span>
-                        <strong>El Pañuelo</strong>
+                    <div class="header-title-group">
+                        <h1 class="detail-title">CUECA CHAPACA</h1>
+                        <div class="detail-subtitle">Tarija • Bolivia</div>
                     </div>
-                    <div class="grid-item">
-                        <span>Instrumentos</span>
-                        <strong>Guitarra y Violín</strong>
+
+                    <div class="section-block">
+                        <h3> ORIGEN E HISTORIA</h3>
+                        <p>
+                            Expresión dancística refinada y alegre del valle tarijeño. Derivada de formas
+                            lírico-musicales coloniales, personifica el elegante galanteo entre el mozo y la "chura
+                            moza".
+                        </p>
                     </div>
-                </div>
+
+                    <div class="section-block">
+                        <h3> VESTIMENTA TRADICIONAL</h3>
+                        <p>
+                            <strong>Mujer:</strong> Pollera viva, blusa bordada, sombrero chapaco, mantón de seda y
+                            flor.<br>
+                            <strong>Varón:</strong> Pantalón oscuro, camisa blanca, poncho tarijeño y sombrero.
+                        </p>
+                    </div>
+
+                    <div class="section-block">
+                        <h3> RITMO Y COREOGRAFÍA</h3>
+                        <p>
+                            Compuesta por Introducción, Quimba (coqueteo tenue con pañuelo) y Remate (zapateo festivo).
+                        </p>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="grid-item">
+                            <span>Elemento clave</span>
+                            <strong>El Pañuelo</strong>
+                        </div>
+                        <div class="grid-item">
+                            <span>Instrumentos</span>
+                            <strong>Guitarra y Violín</strong>
+                        </div>
+                    </div>
+
+                    <!-- Fuente oficial -->
+                    <p class="fuente-info">
+                        Fuente:
+                        <a href="https://www.lexivox.org/norms/BO-L-N764.xhtml" target="_blank"
+                            rel="noopener noreferrer">
+                            Ley N.º 764: Declaratoria de la Cueca Chapacacomo Patrimonio Cultural Inmaterial
+                        </a>.
+                    </p>
             </aside>
         </div>
 
@@ -446,7 +506,7 @@
 
         // Cámara
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        
+
         function updateCameraPosition() {
             if (window.innerWidth > 900) {
                 camera.position.set(0, 0, 5.5);
@@ -519,11 +579,11 @@
         scene.add(characterGroup);
 
         // Chapaco (Varón) - Desplazado a la derecha
-        loader.load('chapaco.glb', function(gltf) {
+        loader.load('chapaco.glb', function (gltf) {
             chapaco = gltf.scene;
             chapaco.scale.set(3.0, 3.0, 3.0);
             chapaco.position.set(1.2, -1.8, 0);
-            
+
             chapaco.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -534,11 +594,11 @@
         });
 
         // Chapaca (Mujer) - Desplazada a la derecha
-        loader.load('chapaca.glb', function(gltf) {
+        loader.load('chapaca.glb', function (gltf) {
             chapaca = gltf.scene;
             chapaca.scale.set(3.0, 3.0, 3.0);
             chapaca.position.set(3.4, -1.8, 0);
-            
+
             chapaca.traverse((node) => {
                 if (node.isMesh) {
                     node.castShadow = true;
@@ -581,4 +641,5 @@
         });
     </script>
 </body>
+
 </html>
